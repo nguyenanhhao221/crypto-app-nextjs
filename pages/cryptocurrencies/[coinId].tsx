@@ -5,20 +5,20 @@ import { getCoinDetail } from '../../services/cryptoApi';
 import { CryptoDetails } from '../../components/CryptoDetails';
 
 const CryptoDetailPage: NextPage = () => {
-  return (
-    <>
-      <CryptoDetails />
-    </>
-  );
+    return (
+        <>
+            <CryptoDetails />
+        </>
+    );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const queryClient = new QueryClient();
-  if (!context) return { props: {} };
-  await queryClient.prefetchQuery(['getCoinDetail'], () =>
-    getCoinDetail(context.query.coinId)
-  );
-  return { props: { dehydratedState: dehydrate(queryClient) } };
+    const queryClient = new QueryClient();
+    if (!context) return { props: {} };
+    await queryClient.prefetchQuery(['getCoinDetail'], () =>
+        getCoinDetail(context.query.coinId)
+    );
+    return { props: { dehydratedState: dehydrate(queryClient) } };
 };
 
 export default CryptoDetailPage;

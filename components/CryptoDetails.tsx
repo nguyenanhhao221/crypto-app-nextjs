@@ -10,15 +10,13 @@ import {
     TrophyOutlined,
 } from '@ant-design/icons';
 import { useQuery } from '@tanstack/react-query';
-import { Col, Row, Select, Spin } from 'antd';
+import { Spin } from 'antd';
 import millify from 'millify';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { getCoinDetail } from '../services/cryptoApi';
-import { Typography } from 'antd';
-import JSXStyle from 'styled-jsx/style';
-const { Title, Text } = Typography;
-const { Option } = Select;
+import { Stats } from './Stats';
+import { TStats } from '../type';
 export const CryptoDetails = () => {
     const [timePeriod, setTimePeriod] = useState('7d');
     const router = useRouter();
@@ -36,7 +34,7 @@ export const CryptoDetails = () => {
         //the Time period to be selected
         const time = ['3h', '24h', '7d', '30d', '3m', '1y', '3y', '5y'];
         //The main stat to be displayed
-        const stats = [
+        const stats: TStats[] = [
             {
                 title: 'Price to USD',
                 value: `$ ${
@@ -114,11 +112,11 @@ export const CryptoDetails = () => {
         ];
         return (
             <main className="px-2 pt-4 md:mx-auto md:w-[90%]">
-                <div>
-                    <h2 className="text-center text-2xl font-bold text-fuchsia-700">
+                <div className="py-6">
+                    <h2 className="text-center text-2xl font-bold text-fuchsia-700 md:text-4xl">
                         {cryptoDetail.name} Price
                     </h2>
-                    <p className="text-center">
+                    <p className="py-4 text-center">
                         {cryptoDetail.name} live price in US dollar. View value
                         statistic, market cap and supply.
                     </p>
@@ -128,63 +126,13 @@ export const CryptoDetails = () => {
                 {/* Stats */}
                 <section className="grid gap-4 px-1 py-4 md:grid-cols-2 md:gap-12 md:px-6">
                     {/* Main stats */}
-                    <div>
-                        <div>
-                            <h3 className="text-center font-semibold capitalize text-fuchsia-500 md:text-left">
-                                {cryptoDetail.name} value statistics
-                            </h3>
-                            <p className="text-center capitalize md:text-left">
-                                An overview showing of {cryptoDetail.name}
-                            </p>
-                        </div>
-                        <ul className="flex flex-col divide-y-2">
-                            {stats.map((stat) => (
-                                <li
-                                    key={stat.value}
-                                    className="flex justify-between py-4 md:py-6"
-                                >
-                                    <div className="flex items-center gap-1">
-                                        {stat.icon}
-                                        <p className="inline text-sm md:text-base">
-                                            {stat.title}
-                                        </p>
-                                    </div>
-                                    <div className="text-sm font-bold md:text-base">
-                                        {stat.value}
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    <Stats name={cryptoDetail.name} statsArr={stats} />
                     {/* Other stats */}
-                    <div>
-                        <div>
-                            <h3 className="text-center font-semibold capitalize text-fuchsia-500 md:text-left">
-                                {cryptoDetail.name} Other Stats
-                            </h3>
-                            <p className="text-center capitalize md:text-left">
-                                Other stats of {cryptoDetail.name}
-                            </p>
-                        </div>
-                        <ul className="flex flex-col divide-y-2">
-                            {otherStats.map((stat) => (
-                                <li
-                                    key={stat.title}
-                                    className="flex justify-between py-4 md:py-6"
-                                >
-                                    <div className="flex items-center gap-1">
-                                        {stat.icon}
-                                        <p className="inline text-sm md:text-base">
-                                            {stat.title}
-                                        </p>
-                                    </div>
-                                    <div className="text-sm font-bold md:text-base">
-                                        {stat.value}
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    <Stats
+                        name={cryptoDetail.name}
+                        statsArr={otherStats}
+                        variants="others"
+                    />
                 </section>
             </main>
         );

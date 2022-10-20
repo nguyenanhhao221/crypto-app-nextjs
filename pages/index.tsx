@@ -5,13 +5,13 @@ import Homepage from '../components/Homepage';
 import { getCoinRanking } from '../services/cryptoApi';
 
 const Home: NextPage = () => {
-  return <Homepage />;
+    return <Homepage />;
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(['getCoins'], () => getCoinRanking(100));
-  return { props: { dehydratedState: dehydrate(queryClient) } };
+    const queryClient = new QueryClient();
+    await queryClient.prefetchQuery(['getCoins'], () => getCoinRanking(100));
+    return { props: { dehydratedState: dehydrate(queryClient) } };
 };
 
 export default Home;
