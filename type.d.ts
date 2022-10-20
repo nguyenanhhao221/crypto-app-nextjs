@@ -17,6 +17,33 @@ export type TResponseGetCoin = {
   status: string;
   data: { stats: TGloBalStats; coins: TCrypto[] };
 };
+export type TResponseGetCoinDetail = {
+  status: string;
+  data: {
+    coin: TCrypto & {
+      description: string;
+      websiteUrl: string;
+      color: string;
+      links: { name: string; type: string; url: string }[];
+      supply: {
+        confirmed: boolean;
+        supplyAt: number;
+        max: string;
+        total: string;
+        circulating: string;
+      };
+      numberOfMarkets: number;
+      numberOfExchanges: number;
+      marketCap: string;
+      fullyDilutedMarketCap: string;
+      price: string;
+      priceAt: number;
+      change: string;
+      rank: number;
+      tag: string[];
+    };
+  };
+};
 export interface TCrypto {
   name: string;
   uuid: string;
@@ -34,6 +61,10 @@ export interface TCrypto {
   coinrankingUrl: string;
   btrPrice: string;
   '24hVolume': string;
+  allTimeHigh: {
+    price: string;
+    timestamp: number;
+  };
 }
 export interface TGloBalStats {
   total: number;

@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import {
   HomeOutlined,
   MoneyCollectOutlined,
@@ -22,7 +23,7 @@ const menuItems = [
         Home
       </Link>
     ),
-    key: 'home',
+    key: '/',
     icon: <HomeOutlined />,
   },
   {
@@ -34,7 +35,7 @@ const menuItems = [
         Cryptocurrencies
       </Link>
     ),
-    key: 'Cryptocurrencies',
+    key: '/cryptocurrencies',
     icon: <FundOutlined />,
   },
   {
@@ -46,7 +47,7 @@ const menuItems = [
         Exchanges
       </Link>
     ),
-    key: 'exchanges',
+    key: '/exchanges',
     icon: <MoneyCollectOutlined />,
   },
   {
@@ -55,49 +56,93 @@ const menuItems = [
         News
       </Link>
     ),
-    key: 'news',
+    key: '/news',
     icon: <BulbOutlined />,
   },
 ];
 const Navbar = ({ collapse, setCollapse }: Props) => {
+  const router = useRouter();
+  const { pathname } = router;
   return (
-    <nav className="bg-[#001529] fixed md:static flex flex-col items-center justify-between z-10 top-0 bottom-0 left-0 overflow-hidden min-w-fit">
-      <div className="flex flex-col md:items-start md:gap-6 items-center px-2">
-        <div className="logo-container flex justify-between gap-2 items-center">
-          <Image
-            src={icon}
-            alt="logo"
-            className="w-16 h-auto object-contain object-center"
-          />
-          <h2
-            className={`Logo hidden md:block text-[#1890ff] font-extrabold text-3xl ${
-              collapse ? `md:hidden` : ``
-            }`}
-          >
-            <Link href="/">Cryptoverse</Link>
-          </h2>
-        </div>
-        <ul className={`${collapse && `self-center`}`}>
-          {menuItems.map((item) => (
-            <li
-              className="flex cursor-pointer hover:text-gray-500 group items-center gap-4 p-2 text-gray-300"
-              key={item.key}
-            >
-              {item.icon}
-              {!collapse && item.label}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <button
-        title="slider"
-        type="button"
-        className="text-gray-300 bg-[#002140] w-full"
-        onClick={() => setCollapse(!collapse)}
+    <>
+      <nav
+        className={` ${
+          !collapse && `hidden`
+        } bg-[#001529] fixed flex flex-col items-center justify-between z-10 top-0 bottom-0 left-0 overflow-hidden min-w-fit`}
       >
-        {collapse ? <LeftOutlined /> : <RightOutlined />}
-      </button>
-    </nav>
+        <div className="flex flex-col md:items-start md:gap-6 items-center">
+          <div className="logo-container cursor-pointer flex justify-between gap-2 items-center px-2">
+            <Link href="/">
+              <Image
+                src={icon}
+                alt="logo"
+                className="w-16 h-auto object-contain object-center"
+              />
+            </Link>
+          </div>
+          <ul className="self-center w-full flex flex-col items-center">
+            {menuItems.map((item) => (
+              <li
+                className={`w-full flex cursor-pointer hover:text-gray-100 group justify-center items-center gap-4 p-2 text-slate-300 ${
+                  item.key === pathname ? `bg-[#1990ff]` : ``
+                }`}
+                key={item.key}
+              >
+                <Link href={item.key}>{item.icon}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <button
+          title="slider"
+          type="button"
+          className="text-slate-300 bg-[#002140] w-full"
+          onClick={() => setCollapse(!collapse)}
+        >
+          {collapse ? <RightOutlined /> : <LeftOutlined />}
+        </button>
+      </nav>
+
+      <nav
+        className={`bg-[#001529] -translate-x-full opacity-0 ease-in-out duration-300 ${
+          !collapse && `translate-x-0 opacity-100`
+        } fixed flex flex-col items-center justify-between z-10 top-0 bottom-0 left-0 overflow-hidden min-w-fit`}
+      >
+        <div className="flex flex-col md:items-start md:gap-6 items-center">
+          <div className="logo-container flex justify-between gap-2 items-center px-2">
+            <Image
+              src={icon}
+              alt="logo"
+              className="w-16 h-auto object-contain object-center"
+            />
+            <h2 className={`Logo text-[#1890ff] font-extrabold text-3xl`}>
+              <Link href="/">Cryptoverse</Link>
+            </h2>
+          </div>
+          <ul className="w-full py-4">
+            {menuItems.map((item) => (
+              <li
+                className={`flex cursor-pointer transition-colors hover:text-gray-100 group items-center gap-4 p-2 text-slate-300 ${
+                  item.key === pathname ? `bg-[#1990ff] text-white` : ``
+                }`}
+                key={item.key}
+              >
+                {item.icon}
+                <p className="group-hover:text-blue-600">{item.label}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <button
+          title="slider"
+          type="button"
+          className="text-slate-300 bg-[#002140] w-full"
+          onClick={() => setCollapse(!collapse)}
+        >
+          {collapse ? <RightOutlined /> : <LeftOutlined />}
+        </button>
+      </nav>
+    </>
   );
 };
 

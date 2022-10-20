@@ -22,7 +22,11 @@ function MyApp({
       <Hydrate state={pageProps.dehydratedState}>
         <div className="app-wrapper min-h-screen flex gap-4">
           <Navbar collapse={collapse} setCollapse={setCollapse} />
-          <div className={`flex flex-col w-screen ml-20 md:static md:ml-0`}>
+          <div
+            className={`flex flex-col w-screen ml-20 md:static ${
+              collapse ? `md:ml-20` : `md:ml-[300px]`
+            } `}
+          >
             <Component {...pageProps} />
             <Footer />
           </div>
