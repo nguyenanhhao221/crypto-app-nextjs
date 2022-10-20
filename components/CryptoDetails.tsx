@@ -21,6 +21,7 @@ import { CryptoLinks } from './CryptoLinks';
 import LineChart from './LineChart';
 import { MyListbox } from './ListBox';
 import { Loader } from './Loader';
+
 export const CryptoDetails = () => {
     const [timePeriod, setTimePeriod] = useState('7d');
     const router = useRouter();
