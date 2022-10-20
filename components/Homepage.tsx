@@ -31,7 +31,7 @@ const Homepage = () => {
           </Link>
         </div>
 
-        <Cryptocurrencies simplified cryptos={data?.data?.coins} />
+        <Cryptocurrencies simplified />
       </section>
       <div className="news-cryptos">
         <div className="flex justify-between items-center">

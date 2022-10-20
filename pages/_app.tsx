@@ -8,16 +8,25 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import Navbar from '../components/Navbar';
+import { Footer } from '../components/Footer';
 function MyApp({
   Component,
   pageProps,
 }: AppProps<{ dehydratedState: DehydratedState }>) {
   const [queryClient] = useState(() => new QueryClient());
+  const [collapse, setCollapse] = useState(true);
 
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <Component {...pageProps} />
+        <div className="app-wrapper min-h-screen flex gap-4">
+          <Navbar collapse={collapse} setCollapse={setCollapse} />
+          <div className={`flex flex-col w-screen ml-20 md:static md:ml-0`}>
+            <Component {...pageProps} />
+            <Footer />
+          </div>
+        </div>
         <ReactQueryDevtools initialIsOpen={false} />
       </Hydrate>
     </QueryClientProvider>
