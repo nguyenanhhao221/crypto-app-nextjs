@@ -75,12 +75,14 @@ const Navbar = ({ collapse, setCollapse }: Props) => {
             >
                 <div className="flex flex-col items-center md:items-start md:gap-6">
                     <div className="logo-container flex cursor-pointer items-center justify-between gap-2 px-2">
-                        <Link href="/">
-                            <Image
-                                src={icon}
-                                alt="logo"
-                                className="h-auto w-12 object-contain object-center md:w-16"
-                            />
+                        <Link passHref href="/">
+                            <a>
+                                <Image
+                                    src={icon}
+                                    alt="logo"
+                                    className="h-auto w-12 object-contain object-center md:w-16"
+                                />
+                            </a>
                         </Link>
                     </div>
                     <ul className="flex w-full flex-col items-center self-center">

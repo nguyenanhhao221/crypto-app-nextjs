@@ -10,7 +10,6 @@ import {
     TrophyOutlined,
 } from '@ant-design/icons';
 import { useQuery } from '@tanstack/react-query';
-import { Spin } from 'antd';
 import millify from 'millify';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
@@ -19,6 +18,9 @@ import { Stats } from './Stats';
 import { TStats } from '../type';
 import { CryptoDetailDescription } from './CryptoDetailDescription';
 import { CryptoLinks } from './CryptoLinks';
+import LineChart from './LineChart';
+import { MyListbox } from './ListBox';
+import { Loader } from './Loader';
 export const CryptoDetails = () => {
     const [timePeriod, setTimePeriod] = useState('7d');
     const router = useRouter();
@@ -27,14 +29,14 @@ export const CryptoDetails = () => {
         ['getCoinDetail'],
         () => getCoinDetail(coinId)
     );
-    if (isLoading) return <Spin />;
+    if (isLoading) return <Loader />;
     if (isError && error instanceof Error) return <div>{error.message}</div>;
 
     if (data && !(data instanceof Error)) {
         const cryptoDetail = data.data.coin;
         //Detail about the crypto return by API
         //the Time period to be selected
-        const time = ['3h', '24h', '7d', '30d', '3m', '1y', '3y', '5y'];
+        const time = ['7d', '3h', '24h', '30d', '3m', '1y', '3y', '5y'];
         //The main stat to be displayed
         const stats: TStats[] = [
             {
@@ -124,7 +126,25 @@ export const CryptoDetails = () => {
                     </p>
                 </div>
                 {/* Line chart */}
-                <section></section>
+                <section>
+                    <h2 className="text-center text-xl font-bold text-blue-500 md:text-2xl">
+                        {cryptoDetail.name} Price Chart
+                    </h2>
+                    <div className="flex flex-col items-center gap-1 py-2 md:flex-row md:justify-between">
+                        <MyListbox data={time} setTimePeriod={setTimePeriod} />
+                        <p className="current-price text-sm font-bold md:text-lg">
+                            Current {cryptoDetail.name} Price: $
+                            {typeof cryptoDetail.price !== 'undefined' &&
+                                millify(Number(cryptoDetail.price))}
+                        </p>
+                    </div>
+                    <LineChart
+                        coinName={cryptoDetail.name}
+                        simplified={false}
+                        mobileView={false}
+                        timePeriod={timePeriod}
+                    />
+                </section>
                 {/* Stats */}
                 <section className="grid gap-4 px-1 py-4 md:grid-cols-2 md:gap-12 md:px-6">
                     {/* Main stats */}

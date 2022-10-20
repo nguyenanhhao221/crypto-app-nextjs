@@ -21,7 +21,7 @@ export type TResponseGetCoinDetail = {
     status: string;
     data: {
         coin: TCrypto & {
-            description: any;
+            description: string;
             websiteUrl: string;
             color: string;
             links: { name: string; type: string; url: string }[];
@@ -84,4 +84,15 @@ export type TStats = {
     title: string;
     value: string | JSX.Element | number;
     icon: JSX.Element;
+};
+
+export type TResponseCoinHistory = {
+    status: string;
+    data: {
+        change: string;
+        history: {
+            price: string;
+            timestamp: number;
+        }[];
+    };
 };

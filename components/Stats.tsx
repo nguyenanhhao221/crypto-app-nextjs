@@ -15,13 +15,13 @@ export const Stats = ({ name, statsArr, variants }: Props) => {
                 <p className="text-center capitalize md:text-left">
                     {variants === 'others'
                         ? `Other stats related to ${name}`
-                        : `An overview showing of ${name}`}
+                        : `An overview of ${name}`}
                 </p>
             </div>
             <ul className="flex flex-col divide-y-2">
                 {statsArr.map(({ title, value, icon }) => (
                     <li
-                        key={typeof value !== 'string' ? title : value}
+                        key={typeof icon !== 'string' ? title : icon}
                         className="flex justify-between py-4 md:py-6"
                     >
                         <div className="flex items-center gap-1">

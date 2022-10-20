@@ -1,13 +1,11 @@
-import { Typography, Spin } from 'antd';
+import { Spin } from 'antd';
 import GlobalStats from './GlobalStats';
 import { TResponseGetCoin } from '../type';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import Cryptocurrencies from './Cryptocurrencies';
-import News from './News';
 import { getCoinRanking } from '../services/cryptoApi';
 
-const { Title } = Typography;
 const Homepage = () => {
     const { data, isLoading, isError, error } = useQuery<TResponseGetCoin>(
         ['getCoins'],

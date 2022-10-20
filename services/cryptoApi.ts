@@ -1,6 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import axios, { AxiosRequestConfig } from 'axios';
-import { TResponseGetCoin, TResponseGetCoinDetail } from '../type';
+import {
+    TResponseCoinHistory,
+    TResponseGetCoin,
+    TResponseGetCoinDetail,
+} from '../type';
 const baseUrl = 'http://localhost:8000';
 
 export const getCoinRanking = async (
@@ -27,6 +31,19 @@ export const getCoinDetail = async (
             coinId,
         },
     });
+    return response.data;
+};
+export const getCoinHistory = async (
+    timePeriod: string,
+    coinId?: string | string[]
+): Promise<TResponseCoinHistory> => {
+    const endpoint = `http://localhost:3000/api/coins/${coinId}/history`;
+    const options: AxiosRequestConfig = {
+        params: {
+            timePeriod,
+        },
+    };
+    const response = await axios.get(endpoint, options);
     return response.data;
 };
 //Create Api take an object with the following
