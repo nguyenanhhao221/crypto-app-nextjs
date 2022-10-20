@@ -79,7 +79,7 @@ const Navbar = ({ collapse, setCollapse }: Props) => {
                             <Image
                                 src={icon}
                                 alt="logo"
-                                className="h-auto w-16 object-contain object-center"
+                                className="h-auto w-12 object-contain object-center md:w-16"
                             />
                         </Link>
                     </div>
@@ -116,7 +116,7 @@ const Navbar = ({ collapse, setCollapse }: Props) => {
                         <Image
                             src={icon}
                             alt="logo"
-                            className="h-auto w-16 object-contain object-center"
+                            className="h-auto w-12 object-contain object-center md:w-16"
                         />
                         <h2
                             className={`Logo text-3xl font-extrabold text-[#1890ff]`}

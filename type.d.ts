@@ -21,7 +21,7 @@ export type TResponseGetCoinDetail = {
     status: string;
     data: {
         coin: TCrypto & {
-            description: string;
+            description: any;
             websiteUrl: string;
             color: string;
             links: { name: string; type: string; url: string }[];

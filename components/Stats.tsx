@@ -9,10 +9,8 @@ export const Stats = ({ name, statsArr, variants }: Props) => {
     return (
         <div className="py-4">
             <div>
-                <h3 className="text-center font-semibold capitalize text-fuchsia-500 md:text-left md:text-2xl">
-                    {variants === 'others'
-                        ? `${name} other stats`
-                        : `${name} value statistics`}
+                <h3 className="text-center font-semibold capitalize text-blue-500 md:text-left md:text-2xl">
+                    {variants === 'others' ? `other stats` : `value statistics`}
                 </h3>
                 <p className="text-center capitalize md:text-left">
                     {variants === 'others'

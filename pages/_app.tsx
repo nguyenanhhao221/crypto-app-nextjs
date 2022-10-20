@@ -23,7 +23,7 @@ function MyApp({
                 <div className="app-wrapper flex min-h-screen gap-4">
                     <Navbar collapse={collapse} setCollapse={setCollapse} />
                     <div
-                        className={`ml-20 flex w-screen flex-col md:static ${
+                        className={`ml-16 flex w-screen flex-col md:static ${
                             collapse ? `md:ml-20` : `md:ml-[300px]`
                         } `}
                     >

@@ -17,6 +17,8 @@ import React, { useState } from 'react';
 import { getCoinDetail } from '../services/cryptoApi';
 import { Stats } from './Stats';
 import { TStats } from '../type';
+import { CryptoDetailDescription } from './CryptoDetailDescription';
+import { CryptoLinks } from './CryptoLinks';
 export const CryptoDetails = () => {
     const [timePeriod, setTimePeriod] = useState('7d');
     const router = useRouter();
@@ -113,7 +115,7 @@ export const CryptoDetails = () => {
         return (
             <main className="px-2 pt-4 md:mx-auto md:w-[90%]">
                 <div className="py-6">
-                    <h2 className="text-center text-2xl font-bold text-fuchsia-700 md:text-4xl">
+                    <h2 className="text-center text-2xl font-bold text-blue-700 md:text-4xl">
                         {cryptoDetail.name} Price
                     </h2>
                     <p className="py-4 text-center">
@@ -132,6 +134,17 @@ export const CryptoDetails = () => {
                         name={cryptoDetail.name}
                         statsArr={otherStats}
                         variants="others"
+                    />
+                </section>
+                {/* Description */}
+                <section className="grid gap-4 px-1 py-4 md:grid-cols-2 md:gap-12 md:px-6">
+                    <CryptoDetailDescription
+                        description={cryptoDetail.description}
+                        name={cryptoDetail.name}
+                    />
+                    <CryptoLinks
+                        name={cryptoDetail.name}
+                        links={cryptoDetail.links}
                     />
                 </section>
             </main>
