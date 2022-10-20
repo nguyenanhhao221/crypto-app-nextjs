@@ -1,19 +1,24 @@
-import { Spin } from 'antd';
 import GlobalStats from './GlobalStats';
 import { TResponseGetCoin } from '../type';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import Cryptocurrencies from './Cryptocurrencies';
 import { getCoinRanking } from '../services/cryptoApi';
+import { Loader } from './Loader';
 
 const Homepage = () => {
     const { data, isLoading, isError, error } = useQuery<TResponseGetCoin>(
         ['getCoins'],
-        () => getCoinRanking(100)
+        () => getCoinRanking(100),
+        {
+            //options to refetch this query in 60s and even in background. This is to update to the user real time data every 60s
+            refetchInterval: 60 * 1000,
+            refetchIntervalInBackground: true,
+        }
     );
-    if (isLoading) return <Spin size="large" className="loader" />;
+    if (isLoading) return <Loader />;
 
-    if (isError) return <>Error {error}</>;
+    if (isError && error instanceof Error) return <>Error {error.message}</>;
     if (!data) return <>GlobalStat undefined</>;
     const globalStats = data?.data?.stats;
     return (
