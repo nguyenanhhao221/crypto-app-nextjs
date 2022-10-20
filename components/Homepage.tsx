@@ -19,27 +19,27 @@ const Homepage = () => {
   if (!data) return <>GlobalStat undefined</>;
   const globalStats = data?.data?.stats;
   return (
-    <div className="w-full p-4">
+    <div className="w-full py-4">
       <GlobalStats globalStats={globalStats} />
       <div className="top-cryptos">
-        <div className="home-heading-container">
-          <Title level={2} style={{ margin: 0 }} className="home-title">
+        <div className="flex justify-between items-center">
+          <h2 className="home-title font-bold md:text-2xl">
             Top 10 Cryptocurrencies in the world
-          </Title>
-          <Title level={2} style={{ margin: 0 }} className="show-more">
-            <Link href="/cryptocurrencies">Show more</Link>
-          </Title>
+          </h2>
+          <Link className="text-blue-700" href="/cryptocurrencies">
+            Show more
+          </Link>
         </div>
-        {/* <Cryptocurrencies simplified /> */}
+        {/* <Cryptocurrencies simplified cryptos={data?.data?.coins} /> */}
       </div>
       <div className="news-cryptos">
-        <div className="home-heading-container">
-          <Title level={2} style={{ margin: 0 }} className="home-title">
+        <div className="flex justify-between items-center">
+          <h2 className="home-title font-bold md:text-2xl">
             Latest Crypto News
-          </Title>
-          <Title level={2} style={{ margin: 0 }} className="show-more">
-            <Link href="/news">Show more</Link>
-          </Title>
+          </h2>
+          <Link className="text-blue-700" href="/news">
+            Show more
+          </Link>
         </div>
         {/* <News simplified /> */}
       </div>

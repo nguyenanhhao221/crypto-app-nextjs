@@ -15,8 +15,26 @@ export type TExchange = {
 };
 export type TResponseGetCoin = {
   status: string;
-  data: { stats: TGloBalStats };
+  data: { stats: TGloBalStats; coins: TCrypto[] };
 };
+export interface TCrypto {
+  name: string;
+  uuid: string;
+  symbol: string;
+  color: string;
+  iconUrl: string;
+  marketCap: string;
+  price: string;
+  listedAt: number;
+  tier: number;
+  change: string;
+  rank: number;
+  sparkline: string[];
+  lowVolume: boolean;
+  coinrankingUrl: string;
+  btrPrice: string;
+  '24hVolume': string;
+}
 export interface TGloBalStats {
   total: number;
   totalCoins: number;

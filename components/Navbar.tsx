@@ -61,7 +61,7 @@ const menuItems = [
 ];
 const Navbar = ({ collapse, setCollapse }: Props) => {
   return (
-    <nav className="bg-[#001529] md:static flex flex-col items-center justify-between z-10 fixed top-0 bottom-0 left-0 overflow-hidden min-w-fit">
+    <nav className="bg-[#001529] fixed md:static flex flex-col items-center justify-between z-10 top-0 bottom-0 left-0 overflow-hidden min-w-fit">
       <div className="flex flex-col md:items-start md:gap-6 items-center px-2">
         <div className="logo-container flex justify-between gap-2 items-center">
           <Image

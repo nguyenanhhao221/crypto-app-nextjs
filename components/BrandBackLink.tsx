@@ -13,10 +13,11 @@ const BrandBackLink = ({ brand: { logo, name, url } }: Props) => {
       href={url}
       target="_blank"
       rel="noreferrer noopener"
+      className="flex flex-col items-center gap-1"
     >
-      <span>Powered by</span>
+      <span className="text-sm md:text-base">Powered by</span>
       <Image
-        className="refer-logo-brand w-32"
+        className="refer-logo-brand w-20 md:w-32 object-contain object-center"
         alt={`${name} Logo`}
         src={logo}
       />
