@@ -1,26 +1,17 @@
-import { useEffect, useState } from 'react';
-import { Card, Row, Col, Input, Spin, Avatar, Statistic } from 'antd';
-import { useGetCryptosQuery } from '../services/cryptoApi';
-import Link from 'next/link';
-import millify from 'millify';
-import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
+import { useState } from 'react';
 import { CryptoCard } from './CryptoCard';
-import { TCrypto } from '../type';
+import { TCrypto, TResponseGetCoin } from '../type';
+import { useQuery } from '@tanstack/react-query';
+import { getCoinRanking } from '../services/cryptoApi';
+import { Input, Spin } from 'antd';
 
 type Props = { simplified: boolean; cryptos: TCrypto[] };
-type T = {
-  [key: string]: number | string;
-  price: number;
-  marketCap: number;
-  change: number;
-};
 
 const Cryptocurrencies = ({ simplified, cryptos }: Props) => {
   //If simplified is true then display only top 10 currencies, if not display 100
   const count = simplified ? 10 : 100;
-  const cryptosToRender = cryptos.slice(0, count);
   const [searchTerm, setSearchTerm] = useState('');
-
+  const cryptosToRender = cryptos.slice(0, count);
   return (
     <>
       {/* Add search box only when not in simplified  */}
@@ -33,7 +24,7 @@ const Cryptocurrencies = ({ simplified, cryptos }: Props) => {
           />
         </div>
       )}
-      <ul className="grid grid-cols-2">
+      <ul className="grid grid-cols-1 px-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 2xl:gap-8 gap-4">
         {cryptosToRender.map((crypto) => (
           <CryptoCard key={crypto.name} crypto={crypto} />
         ))}

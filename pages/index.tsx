@@ -7,7 +7,7 @@ import { getCoinRanking } from '../services/cryptoApi';
 import Homepage from '../components/Homepage';
 
 const Home: NextPage = () => {
-  const [collapse, setCollapse] = useState(false);
+  const [collapse, setCollapse] = useState(true);
   return (
     <div className="app-wrapper min-h-screen flex gap-4">
       <Navbar collapse={collapse} setCollapse={setCollapse} />

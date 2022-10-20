@@ -19,19 +19,20 @@ const Homepage = () => {
   if (!data) return <>GlobalStat undefined</>;
   const globalStats = data?.data?.stats;
   return (
-    <div className="w-full py-4">
+    <div className="w-full py-4 space-y-4">
       <GlobalStats globalStats={globalStats} />
-      <div className="top-cryptos">
-        <div className="flex justify-between items-center">
-          <h2 className="home-title font-bold md:text-2xl">
+      <section className="top-cryptos">
+        <div className="items-center px-4 text-center pb-4 md:text-left flex flex-col  md:flex-row justify-between flex-wrap">
+          <h2 className="font-bold text-lg md:text-2xl capitalize">
             Top 10 Cryptocurrencies in the world
           </h2>
           <Link className="text-blue-700" href="/cryptocurrencies">
             Show more
           </Link>
         </div>
-        {/* <Cryptocurrencies simplified cryptos={data?.data?.coins} /> */}
-      </div>
+
+        <Cryptocurrencies simplified cryptos={data?.data?.coins} />
+      </section>
       <div className="news-cryptos">
         <div className="flex justify-between items-center">
           <h2 className="home-title font-bold md:text-2xl">
