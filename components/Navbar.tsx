@@ -120,6 +120,7 @@ const Navbar = ({ collapse, setCollapse }: Props) => {
                     <ul className="w-full py-4">
                         {menuItems.map((item) => (
                             <li
+                                onClick={() => router.push(item.key)}
                                 className={`group flex cursor-pointer items-center gap-4 p-2 text-slate-300 transition-colors hover:text-gray-100 ${
                                     item.key === pathname
                                         ? `bg-[#1990ff] text-white`
@@ -127,7 +128,7 @@ const Navbar = ({ collapse, setCollapse }: Props) => {
                                 }`}
                                 key={item.key}
                             >
-                                {item.icon}
+                                <Link href={item.key}>{item.icon}</Link>
                                 <p className="group-hover:text-blue-600">
                                     {item.label}
                                 </p>

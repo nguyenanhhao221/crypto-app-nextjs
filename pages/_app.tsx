@@ -10,9 +10,11 @@ import {
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Navbar from '../components/Navbar';
 import { Footer } from '../components/Footer';
+import { motion } from 'framer-motion';
 function MyApp({
     Component,
     pageProps,
+    router,
 }: AppProps<{ dehydratedState: DehydratedState }>) {
     const [queryClient] = useState(() => new QueryClient());
     const [collapse, setCollapse] = useState(true);
@@ -27,7 +29,21 @@ function MyApp({
                             collapse ? `md:ml-20` : `md:ml-[300px]`
                         } `}
                     >
-                        <Component {...pageProps} />
+                        <motion.div
+                            initial="initial"
+                            animate="animate"
+                            variants={{
+                                initial: {
+                                    opacity: 0,
+                                },
+                                animate: {
+                                    opacity: 1,
+                                },
+                            }}
+                            key={router.route}
+                        >
+                            <Component {...pageProps} />
+                        </motion.div>
                         <Footer />
                     </div>
                 </div>
