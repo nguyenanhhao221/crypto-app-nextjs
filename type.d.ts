@@ -96,3 +96,32 @@ export type TResponseCoinHistory = {
         }[];
     };
 };
+type TImagesNews = {
+    type: string;
+    thumbnail: {
+        _type: string;
+        contentUrl: string;
+        width: number;
+        height: number;
+    };
+    isLicensed: boolean;
+    contentUrl?: string;
+};
+export type TNewValue = {
+    _type: string;
+    name: string;
+    url: string;
+    image: TImagesNews;
+    description: string;
+    provider: {
+        _type: string;
+        name: string;
+        image?: TImagesNews;
+    }[];
+    datePublished: string;
+};
+type TResponseNews = {
+    _type: string;
+    webSearchUrl: string;
+    value: TNewValue[];
+};

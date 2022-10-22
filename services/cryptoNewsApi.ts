@@ -1,25 +1,20 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import axios from 'axios';
+import { TResponseNews } from '../type';
 
-const baseUrl = 'http://localhost:8000';
-
-export const cryptoNewsApi = createApi({
-    reducerPath: 'cryptoNewsApi',
-    baseQuery: fetchBaseQuery({ baseUrl }),
-    endpoints: (builder) => ({
-        getCryptosNews: builder.query({
-            query: ({ newCategory, count }) => ({
-                url: `${baseUrl}/get-crypto-news`,
-                params: {
-                    q: newCategory,
-                    count: count,
-                    safeSearch: 'off',
-                    textFormat: 'Raw',
-                    freshness: 'Day',
-                    originalImg: true,
-                },
-            }),
-        }),
-    }),
-});
-
-export const { useGetCryptosNewsQuery } = cryptoNewsApi;
+export const getCryptoNews = async (
+    count: number,
+    newCategory: string
+): Promise<TResponseNews> => {
+    const endpoint = 'http://localhost:3000/api/news';
+    const response = await axios(endpoint, {
+        params: {
+            q: newCategory,
+            count: count,
+            safeSearch: 'off',
+            textFormat: 'Raw',
+            freshness: 'Day',
+            originalImg: true,
+        },
+    });
+    return response.data;
+};

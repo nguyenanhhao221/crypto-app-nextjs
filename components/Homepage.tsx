@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Cryptocurrencies from './Cryptocurrencies';
 import { getCoinRanking } from '../services/cryptoApi';
 import { Loader } from './Loader';
+import News from './News';
 
 const Homepage = () => {
     const { data, isLoading, isError, error } = useQuery<TResponseGetCoin>(
@@ -36,17 +37,17 @@ const Homepage = () => {
 
                 <Cryptocurrencies simplified />
             </section>
-            <div className="news-cryptos">
-                <div className="flex items-center justify-between">
-                    <h2 className="home-title font-bold md:text-2xl">
+            <section className="news-cryptos">
+                <div className="flex flex-col flex-wrap items-center justify-between px-4 pb-4  text-center md:flex-row md:text-left">
+                    <h2 className="home-title font-bold capitalize md:text-2xl">
                         Latest Crypto News
                     </h2>
                     <Link className="text-blue-700" href="/news">
                         Show more
                     </Link>
                 </div>
-                {/* <News simplified /> */}
-            </div>
+                <News simplified />
+            </section>
         </div>
     );
 };

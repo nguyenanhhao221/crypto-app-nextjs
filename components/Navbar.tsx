@@ -74,7 +74,7 @@ const Navbar = ({ collapse, setCollapse }: Props) => {
                 } fixed top-0 bottom-0 left-0 z-10 flex min-w-fit flex-col items-center justify-between overflow-hidden bg-[#001529]`}
             >
                 <div className="flex flex-col items-center md:items-start md:gap-6">
-                    <div className="logo-container flex cursor-pointer items-center justify-between gap-2 px-2">
+                    <div className="logo-container flex cursor-pointer items-center justify-between gap-2 p-2">
                         <Link passHref href="/">
                             <a>
                                 <Image

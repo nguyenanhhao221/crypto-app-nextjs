@@ -29,6 +29,7 @@
     "react-redux": "^8.0.2"
   },
   "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.7",
     "@types/node": "18.11.2",
     "@types/react": "18.0.21",

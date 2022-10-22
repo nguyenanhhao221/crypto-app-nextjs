@@ -5,6 +5,7 @@ specifiers:
   '@headlessui/react': ^1.7.3
   '@heroicons/react': ^2.0.12
   '@reduxjs/toolkit': ^1.8.5
+  '@tailwindcss/line-clamp': ^0.4.2
   '@tailwindcss/typography': ^0.5.7
   '@tanstack/react-query': ^4.12.0
   '@tanstack/react-query-devtools': ^4.12.0
@@ -54,6 +55,7 @@ dependencies:
   react-redux: 8.0.4_5uumaiclxbdbzaqafclbf6maf4
 
 devDependencies:
+  '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.0
   '@tailwindcss/typography': 0.5.7_tailwindcss@3.2.0
   '@types/node': 18.11.2
   '@types/react': 18.0.21
@@ -362,6 +364,14 @@ packages:
     dependencies:
       tslib: 2.4.0
     dev: false
+
+  /@tailwindcss/line-clamp/0.4.2_tailwindcss@3.2.0:
+    resolution: {integrity: sha512-HFzAQuqYCjyy/SX9sLGB1lroPzmcnWv1FHkIpmypte10hptf4oPUfucryMKovZh2u0uiS9U5Ty3GghWfEJGwVw==}
+    peerDependencies:
+      tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
+    dependencies:
+      tailwindcss: 3.2.0_postcss@8.4.18
+    dev: true
 
   /@tailwindcss/typography/0.5.7_tailwindcss@3.2.0:
     resolution: {integrity: sha512-JTTSTrgZfp6Ki4svhPA4mkd9nmQ/j9EfE7SbHJ1cLtthKkpW2OxsFXzSmxbhYbEkfNIyAyhle5p4SYyKRbz/jg==}

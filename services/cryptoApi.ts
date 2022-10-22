@@ -5,6 +5,7 @@ import {
     TResponseGetCoin,
     TResponseGetCoinDetail,
 } from '../type';
+
 const baseUrl = 'http://localhost:8000';
 
 export const getCoinRanking = async (
