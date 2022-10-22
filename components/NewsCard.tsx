@@ -21,7 +21,7 @@ const NewsCard = ({ newData }: Props) => {
         : emptyImage;
     return (
         <>
-            <Link href={url} passHref>
+            <Link href={url} prefetch={false} passHref>
                 <a target="_blank" rel="noopener noreferrer">
                     <div className="gap-2">
                         <Image
