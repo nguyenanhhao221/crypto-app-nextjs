@@ -1,5 +1,5 @@
-import { Button } from 'antd';
 import Image from 'next/future/image';
+import Link from 'next/link';
 import { TBrands } from '../type';
 
 type Props = {
@@ -7,21 +7,21 @@ type Props = {
 };
 const BrandBackLink = ({ brand: { logo, name, url } }: Props) => {
     return (
-        <Button
-            type="link"
-            title={`Powered by ${name}`}
+        <Link
+            passHref
             href={url}
-            target="_blank"
-            rel="noreferrer noopener"
+            title={`Powered by ${name}`}
             className="flex flex-col items-center gap-1"
         >
-            <span className="text-sm md:text-base">Powered by</span>
-            <Image
-                className="refer-logo-brand w-20 object-contain object-center md:w-32"
-                alt={`${name} Logo`}
-                src={logo}
-            />
-        </Button>
+            <a rel="noreferrer noopener" target="_blank">
+                <span className="text-sm md:text-base">Powered by</span>
+                <Image
+                    className="refer-logo-brand w-20 object-contain object-center md:w-32"
+                    alt={`${name} Logo`}
+                    src={logo}
+                />
+            </a>
+        </Link>
     );
 };
 export default BrandBackLink;

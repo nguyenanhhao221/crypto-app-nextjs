@@ -5,8 +5,8 @@ import NewsCard from './NewsCard';
 
 type Props = {
     simplified: boolean;
-    newCategory: string;
-    setNewCategory: React.Dispatch<React.SetStateAction<string>>;
+    newCategory?: string;
+    setNewCategory?: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const News = ({ simplified, newCategory }: Props) => {
@@ -20,7 +20,7 @@ export const News = ({ simplified, newCategory }: Props) => {
         error,
         isSuccess,
     } = useQuery(['getNews', numOfNews, newCategory], () =>
-        getCryptoNews(numOfNews, newCategory)
+        getCryptoNews(numOfNews, (newCategory = 'Cryptocurrencies'))
     );
 
     if (isLoading) return <Loader />;

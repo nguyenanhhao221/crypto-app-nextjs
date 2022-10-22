@@ -8,13 +8,11 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'cdn.coinranking.com',
-                port: '',
                 pathname: '/**',
             },
             {
                 protocol: 'https',
                 hostname: 'www.bing.com',
-                port: '',
                 pathname: '/**',
             },
         ],

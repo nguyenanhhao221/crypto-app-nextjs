@@ -46,7 +46,7 @@ const Homepage = () => {
                         Show more
                     </Link>
                 </div>
-                <News simplified />
+                <News simplified={true} />
             </section>
         </div>
     );
