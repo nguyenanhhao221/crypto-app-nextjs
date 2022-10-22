@@ -5,13 +5,20 @@ import { TCrypto } from '../type';
 type Props = {
     crypto: TCrypto;
 };
-import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
 import Link from 'next/link';
+import {
+    ChevronDoubleDownIcon,
+    ChevronDoubleUpIcon,
+} from '@heroicons/react/24/outline';
 
 export const CryptoCard = ({ crypto }: Props) => {
     const dailyChange = Number(crypto.change);
     const prefix =
-        dailyChange >= 0 ? <CaretUpOutlined /> : <CaretDownOutlined />;
+        dailyChange >= 0 ? (
+            <ChevronDoubleUpIcon className="h-6 w-6" />
+        ) : (
+            <ChevronDoubleDownIcon className="h-6 w-6" />
+        );
     return (
         <li className="cursor-pointer rounded-lg p-4 shadow-xl md:transition-all md:motion-safe:hover:scale-110">
             <Link href={`/cryptocurrencies/${crypto.uuid}`}>

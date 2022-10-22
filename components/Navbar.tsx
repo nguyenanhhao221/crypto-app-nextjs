@@ -1,16 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import {
-    HomeOutlined,
-    MoneyCollectOutlined,
-    BulbOutlined,
-    FundOutlined,
-    LeftOutlined,
-    RightOutlined,
-} from '@ant-design/icons';
 import icon from '../public/cryptocurrency.png';
 import Image from 'next/future/image';
+import {
+    ChevronRightIcon,
+    ChevronLeftIcon,
+    HomeIcon,
+    LightBulbIcon,
+    PresentationChartLineIcon,
+} from '@heroicons/react/24/outline';
 type Props = {
     collapse: boolean;
     setCollapse: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,7 +23,7 @@ const menuItems = [
             </Link>
         ),
         key: '/',
-        icon: <HomeOutlined />,
+        icon: <HomeIcon className="h-5 w-5" />,
     },
     {
         label: (
@@ -36,19 +35,7 @@ const menuItems = [
             </Link>
         ),
         key: '/cryptocurrencies',
-        icon: <FundOutlined />,
-    },
-    {
-        label: (
-            <Link
-                className="cursor-pointer group-hover:text-sky-800"
-                href="/exchanges"
-            >
-                Exchanges
-            </Link>
-        ),
-        key: '/exchanges',
-        icon: <MoneyCollectOutlined />,
+        icon: <PresentationChartLineIcon className="h-5 w-5" />,
     },
     {
         label: (
@@ -60,7 +47,7 @@ const menuItems = [
             </Link>
         ),
         key: '/news',
-        icon: <BulbOutlined />,
+        icon: <LightBulbIcon className="h-5 w-5" />,
     },
 ];
 const Navbar = ({ collapse, setCollapse }: Props) => {
@@ -101,10 +88,14 @@ const Navbar = ({ collapse, setCollapse }: Props) => {
                 <button
                     title="slider"
                     type="button"
-                    className="w-full bg-[#002140] text-slate-300"
+                    className="flex w-full items-center justify-center bg-[#002140]  py-2 text-center text-slate-300"
                     onClick={() => setCollapse(!collapse)}
                 >
-                    {collapse ? <RightOutlined /> : <LeftOutlined />}
+                    {collapse ? (
+                        <ChevronRightIcon className="h-5 w-5" />
+                    ) : (
+                        <ChevronLeftIcon className="h-5 w-5" />
+                    )}
                 </button>
             </nav>
 
@@ -147,10 +138,14 @@ const Navbar = ({ collapse, setCollapse }: Props) => {
                 <button
                     title="slider"
                     type="button"
-                    className="w-full bg-[#002140] text-slate-300"
+                    className="flex w-full items-center justify-center bg-[#002140] py-2 text-center text-slate-300"
                     onClick={() => setCollapse(!collapse)}
                 >
-                    {collapse ? <RightOutlined /> : <LeftOutlined />}
+                    {collapse ? (
+                        <ChevronRightIcon className="h-5 w-5" />
+                    ) : (
+                        <ChevronLeftIcon className="h-5 w-5" />
+                    )}
                 </button>
             </nav>
         </>

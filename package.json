@@ -10,7 +10,6 @@
     "pretty": "prettier --write \"./**/*.{js,jsx,json,ts,tsx}\""
   },
   "dependencies": {
-    "@ant-design/icons": "^4.7.0",
     "@headlessui/react": "^1.7.3",
     "@heroicons/react": "^2.0.12",
     "@tanstack/react-query": "^4.12.0",

@@ -1,14 +1,3 @@
-import {
-    CheckOutlined,
-    DollarOutlined,
-    ExclamationCircleOutlined,
-    FundOutlined,
-    MoneyCollectOutlined,
-    NumberOutlined,
-    StopOutlined,
-    ThunderboltOutlined,
-    TrophyOutlined,
-} from '@ant-design/icons';
 import { useQuery } from '@tanstack/react-query';
 import millify from 'millify';
 import { useRouter } from 'next/router';
@@ -21,6 +10,17 @@ import { CryptoLinks } from './CryptoLinks';
 import LineChart from './LineChart';
 import { MyListbox } from './ListBox';
 import { Loader } from './Loader';
+import {
+    BoltIcon,
+    CheckIcon,
+    CurrencyDollarIcon,
+    CurrencyEuroIcon,
+    HashtagIcon,
+    InformationCircleIcon,
+    PresentationChartLineIcon,
+    StopCircleIcon,
+    TrophyIcon,
+} from '@heroicons/react/24/outline';
 
 export const CryptoDetails = () => {
     const [timePeriod, setTimePeriod] = useState('7d');
@@ -45,12 +45,12 @@ export const CryptoDetails = () => {
                 value: `$ ${
                     cryptoDetail?.price && millify(Number(cryptoDetail?.price))
                 }`,
-                icon: <DollarOutlined />,
+                icon: <CurrencyDollarIcon className="h-5 w-5" />,
             },
             {
                 title: 'Rank',
                 value: cryptoDetail.rank,
-                icon: <NumberOutlined />,
+                icon: <HashtagIcon className="h-5 w-5" />,
             },
             {
                 title: '24h Volume',
@@ -58,7 +58,7 @@ export const CryptoDetails = () => {
                     cryptoDetail['24hVolume'] &&
                     millify(Number(cryptoDetail['24hVolume']))
                 }`,
-                icon: <ThunderboltOutlined />,
+                icon: <BoltIcon className="h-5 w-5" />,
             },
             {
                 title: 'Market Cap',
@@ -66,7 +66,7 @@ export const CryptoDetails = () => {
                     cryptoDetail.marketCap &&
                     millify(Number(cryptoDetail.marketCap))
                 }`,
-                icon: <DollarOutlined />,
+                icon: <CurrencyDollarIcon className="h-5 w-5" />,
             },
             {
                 title: 'All Time High',
@@ -74,7 +74,7 @@ export const CryptoDetails = () => {
                     cryptoDetail?.allTimeHigh?.price &&
                     millify(Number(cryptoDetail?.allTimeHigh?.price))
                 }`,
-                icon: <TrophyOutlined />,
+                icon: <TrophyIcon className="h-5 w-5" />,
             },
         ];
         //Other stats to be displayed
@@ -82,21 +82,21 @@ export const CryptoDetails = () => {
             {
                 title: 'Number Of Markets',
                 value: cryptoDetail?.numberOfMarkets,
-                icon: <FundOutlined />,
+                icon: <PresentationChartLineIcon className="h-5 w-5" />,
             },
             {
                 title: 'Number Of Exchanges',
                 value: cryptoDetail?.numberOfExchanges,
-                icon: <MoneyCollectOutlined />,
+                icon: <CurrencyEuroIcon className="h-5 w-5" />,
             },
             {
                 title: 'Approved Supply',
                 value: cryptoDetail?.supply?.confirmed ? (
-                    <CheckOutlined />
+                    <CheckIcon className="h-5 w-5" />
                 ) : (
-                    <StopOutlined />
+                    <StopCircleIcon className="h-5 w-5" />
                 ),
-                icon: <ExclamationCircleOutlined />,
+                icon: <InformationCircleIcon className="h-5 w-5" />,
             },
             {
                 title: 'Total Supply',
@@ -104,7 +104,7 @@ export const CryptoDetails = () => {
                     cryptoDetail?.supply?.total &&
                     millify(Number(cryptoDetail?.supply?.total))
                 }`,
-                icon: <ExclamationCircleOutlined />,
+                icon: <InformationCircleIcon className="h-5 w-5" />,
             },
             {
                 title: 'Circulating Supply',
@@ -112,7 +112,7 @@ export const CryptoDetails = () => {
                     cryptoDetail?.supply?.circulating &&
                     millify(Number(cryptoDetail?.supply?.circulating))
                 }`,
-                icon: <ExclamationCircleOutlined />,
+                icon: <InformationCircleIcon className="h-5 w-5" />,
             },
         ];
         return (
