@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Cryptocurrencies from './Cryptocurrencies';
 import { getCoinRanking } from '../services/cryptoApi';
 import { Loader } from './Loader';
-import News from './News';
+import { News } from './News';
 
 const Homepage = () => {
     const { data, isLoading, isError, error } = useQuery<TResponseGetCoin>(

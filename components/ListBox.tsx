@@ -1,23 +1,33 @@
 import React from 'react';
 
 type Props = {
-    data: string[];
-    setTimePeriod: React.Dispatch<React.SetStateAction<string>>;
+    data?: string[];
+    setStateFunc: React.Dispatch<React.SetStateAction<string>>;
+    selectText: string;
+    defaultValue?: string;
 };
-export function MyListbox({ data, setTimePeriod }: Props) {
+export function MyListbox({
+    data,
+    setStateFunc,
+    selectText,
+    defaultValue,
+}: Props) {
+    if (!data) return <></>;
     return (
-        <select
-            title="Select Time Period"
-            placeholder="Select Time Period"
-            defaultValue={data[0]}
-            className={`w-28 border py-2 px-4 ring-teal-100`}
-            onChange={(e) => setTimePeriod(e.target.value)}
-        >
-            {data.map((data) => (
-                <option key={data} value={data}>
-                    {data}
-                </option>
-            ))}
-        </select>
+        <>
+            <select
+                title={selectText}
+                placeholder={selectText}
+                defaultValue={defaultValue && defaultValue}
+                className={`border py-2 px-4 ring-teal-100`}
+                onChange={(e) => setStateFunc && setStateFunc(e.target.value)}
+            >
+                {data.map((data) => (
+                    <option key={data} value={data}>
+                        {data}
+                    </option>
+                ))}
+            </select>
+        </>
     );
 }

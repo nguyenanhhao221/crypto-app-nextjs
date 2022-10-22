@@ -132,7 +132,12 @@ export const CryptoDetails = () => {
                         {cryptoDetail.name} Price Chart
                     </h2>
                     <div className="flex flex-col items-center gap-1 py-2 md:flex-row md:justify-between">
-                        <MyListbox data={time} setTimePeriod={setTimePeriod} />
+                        <MyListbox
+                            data={time}
+                            setStateFunc={setTimePeriod}
+                            selectText="Select Time Period"
+                            defaultValue={time[0]}
+                        />
                         <p className="current-price text-sm font-bold md:text-lg">
                             Current {cryptoDetail.name} Price: $
                             {typeof cryptoDetail.price !== 'undefined' &&
