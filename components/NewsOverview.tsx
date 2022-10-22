@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
-import { getCoinRanking } from '../services/cryptoApi';
+import { getCoinRankingClient } from '../services/cryptoApi';
 import { MyListbox } from './ListBox';
 import { Loader } from './Loader';
 import { News } from './News';
@@ -15,7 +15,7 @@ export const NewsOverview = () => {
         isLoading,
         isError,
         error,
-    } = useQuery(['getCoins'], () => getCoinRanking(100));
+    } = useQuery(['getCoins'], () => getCoinRankingClient(100));
     const dataList = isSuccess
         ? [
               'Cryptocurrencies',

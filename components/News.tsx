@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import { getCryptoNews } from '../services/cryptoNewsApi';
+import { getCryptoNewsClient } from '../services/cryptoNewsApi';
 import { Loader } from './Loader';
 import NewsCard from './NewsCard';
 
 type Props = {
     simplified: boolean;
-    newCategory?: string;
+    newCategory: string;
     setNewCategory?: React.Dispatch<React.SetStateAction<string>>;
 };
 
@@ -19,8 +19,8 @@ export const News = ({ simplified, newCategory }: Props) => {
         isError,
         error,
         isSuccess,
-    } = useQuery(['getNews', numOfNews, newCategory], () =>
-        getCryptoNews(numOfNews, (newCategory = 'Cryptocurrencies'))
+    } = useQuery(['getNewsClient', numOfNews, newCategory], () =>
+        getCryptoNewsClient(numOfNews, newCategory)
     );
 
     if (isLoading) return <Loader />;

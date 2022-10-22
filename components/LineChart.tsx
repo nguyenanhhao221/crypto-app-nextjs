@@ -14,7 +14,7 @@ import {
 import { Line } from 'react-chartjs-2';
 import { TResponseCoinHistory } from '../type';
 import { useQuery } from '@tanstack/react-query';
-import { getCoinHistory } from '../services/cryptoApi';
+import { getCoinHistoryClient } from '../services/cryptoApi';
 import { useRouter } from 'next/router';
 import { isPriceUp } from './Utils';
 import { Loader } from './Loader';
@@ -52,7 +52,7 @@ const LineChart = ({ coinName, simplified, timePeriod }: Props) => {
     const coinId = useRouter().query.coinId;
     const { data, isLoading, isError, error } = useQuery(
         ['getCoinHistory', timePeriod],
-        () => getCoinHistory(timePeriod, coinId)
+        () => getCoinHistoryClient(timePeriod, coinId)
     );
     if (isLoading) return <Loader></Loader>;
     if (isError && error instanceof Error) return <div>{error.message}</div>;

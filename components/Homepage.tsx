@@ -3,14 +3,14 @@ import { TResponseGetCoin } from '../type';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import Cryptocurrencies from './Cryptocurrencies';
-import { getCoinRanking } from '../services/cryptoApi';
+import { getCoinRankingClient } from '../services/cryptoApi';
 import { Loader } from './Loader';
 import { News } from './News';
 
 const Homepage = () => {
     const { data, isLoading, isError, error } = useQuery<TResponseGetCoin>(
         ['getCoins'],
-        () => getCoinRanking(100),
+        () => getCoinRankingClient(100),
         {
             //options to refetch this query in 60s and even in background. This is to update to the user real time data every 60s
             refetchInterval: 60 * 1000,
@@ -35,7 +35,7 @@ const Homepage = () => {
                     </Link>
                 </div>
 
-                <Cryptocurrencies simplified />
+                <Cryptocurrencies simplified={true} />
             </section>
             <section className="news-cryptos">
                 <div className="flex flex-col flex-wrap items-center justify-between px-4 pb-4  text-center md:flex-row md:text-left">
@@ -46,7 +46,7 @@ const Homepage = () => {
                         Show more
                     </Link>
                 </div>
-                <News simplified={true} />
+                <News simplified={true} newCategory="Cryptocurrencies" />
             </section>
         </div>
     );

@@ -1,32 +1,13 @@
-import axios from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
-
-const BASE_URL = 'https://coinranking1.p.rapidapi.com';
-const axiosBase = axios.create({
-    baseURL: BASE_URL,
-});
+import { getCoinRankingServer } from '../../../services/cryptoApi';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-    const API_KEY = process.env.X_RAPIDAPI_KEY;
-    if (!API_KEY) throw new Error('Api key is undefined');
-    const endpoint = '/coins';
-    const response = await axiosBase.get(endpoint, {
-        params: {
-            referenceCurrencyUuid: 'yhjMzLPhuIDl',
-            timePeriod: '24h',
-            'tiers[0]': '1',
-            orderBy: 'marketCap',
-            orderDirection: 'desc',
-            limit: req.query.limit,
-            offset: '0',
-        },
-        headers: {
-            'X-RapidAPI-Key': API_KEY,
-            'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com',
-        },
-    });
+    const response = await getCoinRankingServer(
+        Number(req.query.limit),
+        process.env.X_RAPIDAPI_KEY
+    );
 
-    return res.status(200).send(response.data);
+    return res.status(200).json(response);
 };
 
 export default handler;

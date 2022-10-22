@@ -2,8 +2,8 @@ import React from 'react';
 import type { GetServerSideProps, NextPage } from 'next';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import Homepage from '../components/Homepage';
-import { getCoinRanking } from '../services/cryptoApi';
-import { getCryptoNews } from '../services/cryptoNewsApi';
+import { getCoinRankingServer } from '../services/cryptoApi';
+import { getCryptoNewsServer } from '../services/cryptoNewsApi';
 
 const Home: NextPage = () => {
     return <Homepage />;
@@ -11,9 +11,18 @@ const Home: NextPage = () => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const queryClient = new QueryClient();
-    await queryClient.prefetchQuery(['getCoins'], () => getCoinRanking(100));
-    await queryClient.prefetchQuery(['getNews'], () =>
-        getCryptoNews(6, 'Cryptocurrencies')
+    await queryClient.prefetchQuery(['getCoins'], () =>
+        getCoinRankingServer(10, process.env.X_RAPIDAPI_KEY)
+    );
+    await queryClient.prefetchQuery(
+        ['getNewsServer'],
+        () =>
+            getCryptoNewsServer(
+                6,
+                'Cryptocurrencies',
+                process.env.X_RAPIDAPI_KEY
+            ),
+        { staleTime: 5 * 1000 }
     );
     return { props: { dehydratedState: dehydrate(queryClient) } };
 };

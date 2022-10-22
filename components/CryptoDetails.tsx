@@ -13,7 +13,7 @@ import { useQuery } from '@tanstack/react-query';
 import millify from 'millify';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { getCoinDetail } from '../services/cryptoApi';
+import { getCoinDetailClient } from '../services/cryptoApi';
 import { Stats } from './Stats';
 import { TStats } from '../type';
 import { CryptoDetailDescription } from './CryptoDetailDescription';
@@ -27,8 +27,8 @@ export const CryptoDetails = () => {
     const router = useRouter();
     const coinId = router.query.coinId;
     const { data, isLoading, isError, error } = useQuery(
-        ['getCoinDetail'],
-        () => getCoinDetail(coinId)
+        ['getCoinDetail', coinId],
+        () => getCoinDetailClient(coinId)
     );
     if (isLoading) return <Loader />;
     if (isError && error instanceof Error) return <div>{error.message}</div>;
