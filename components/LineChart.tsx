@@ -93,18 +93,18 @@ const LineChart = ({ coinName, simplified, timePeriod }: Props) => {
                         radius: 0, //disable the point in chart
                     },
                 },
-                maintainAspectRatio: true,
+                maintainAspectRatio: false,
             },
         };
 
         return (
-            <>
+            <div className="">
                 <UpDownValue value={data.data.change} suffix="%" />
 
-                <div className="chart-wrapper relative">
+                <div className="chart-wrapper mx-auto h-[400px] w-[90%]">
                     <Line data={LineProps.data} options={LineProps.options} />
                 </div>
-            </>
+            </div>
         );
     }
     //This is for display chart in the Exchanges page, because we use 2 different APIs so the data return with 2 different format so we will have different logic to render the chart
