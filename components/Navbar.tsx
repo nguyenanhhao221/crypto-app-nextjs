@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import icon from '../public/cryptocurrency.png';
-import Image from 'next/future/image';
+import Image from 'next/image';
 import {
     ChevronRightIcon,
     ChevronLeftIcon,
@@ -54,7 +54,7 @@ const Navbar = ({ collapse, setCollapse }: Props) => {
     const router = useRouter();
     const { pathname } = router;
     return (
-        <>
+        <header>
             <nav
                 className={` ${
                     !collapse && `hidden`
@@ -62,14 +62,12 @@ const Navbar = ({ collapse, setCollapse }: Props) => {
             >
                 <div className="flex flex-col items-center md:items-start md:gap-6">
                     <div className="logo-container flex cursor-pointer items-center justify-between gap-2 p-2">
-                        <Link passHref href="/">
-                            <a>
-                                <Image
-                                    src={icon}
-                                    alt="logo"
-                                    className="h-auto w-12 object-contain object-center md:w-16"
-                                />
-                            </a>
+                        <Link href="/">
+                            <Image
+                                src={icon}
+                                alt="logo"
+                                className="h-auto w-12 object-contain object-center md:w-16"
+                            />
                         </Link>
                     </div>
                     <ul className="flex w-full flex-col items-center self-center">
@@ -149,7 +147,7 @@ const Navbar = ({ collapse, setCollapse }: Props) => {
                     )}
                 </button>
             </nav>
-        </>
+        </header>
     );
 };
 

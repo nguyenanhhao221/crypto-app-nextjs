@@ -1,5 +1,5 @@
 import millify from 'millify';
-import Image from 'next/future/image';
+import Image from 'next/image';
 import React from 'react';
 import { TCrypto } from '../type';
 type Props = {
