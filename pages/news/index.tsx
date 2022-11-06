@@ -21,7 +21,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
                 'Cryptocurrencies',
                 process.env.X_RAPIDAPI_KEY
             ),
-        { staleTime: 5 * 1000 } //staleTime = 5s
+        { staleTime: 5 * 1000, cacheTime: 1000 * 60 * 60 * 24 * 3 } //staleTime = 5s
     );
     await queryClient.prefetchQuery(
         ['getCoins'],

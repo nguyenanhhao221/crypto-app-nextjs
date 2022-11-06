@@ -19,8 +19,10 @@ export const News = ({ simplified, newCategory }: Props) => {
         isError,
         error,
         isSuccess,
-    } = useQuery(['getNewsClient', numOfNews, newCategory], () =>
-        getCryptoNewsClient(numOfNews, newCategory)
+    } = useQuery(
+        ['getNewsClient', numOfNews, newCategory],
+        () => getCryptoNewsClient(numOfNews, newCategory),
+        { cacheTime: 1000 * 60 * 60 * 24 * 3, refetchOnWindowFocus: false }
     );
 
     if (isLoading) return <Loader />;
